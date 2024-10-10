@@ -1,0 +1,26 @@
+About Title: About
+About Subtitle: Lorem ipsum dolor sit amet consectetur.
+
+Timeline Entries:
+- Year: 2009-2011
+  Title: Our Humble Beginnings
+  Content: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur.
+  Image: assets/img/about/1.jpg
+
+- Year: March 2011
+  Title: An Agency is Born
+  Content: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur.
+  Image: assets/img/about/2.jpg
+
+- Year: December 2015
+  Title: Transition to Full Service
+  Content: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur.
+  Image: assets/img/about/3.jpg
+
+- Year: July 2020
+  Title: Phase Two Expansion
+  Content: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur.
+  Image: assets/img/about/4.jpg
+
+Call to Action:
+- Text: Be Part of Our Story!

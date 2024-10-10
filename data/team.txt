@@ -1,0 +1,23 @@
+# Team Section
+## Team Members
+
+- **Parveen Anand** - Lead Designer
+  - Description: Creative and detail-oriented designer.
+  - Image: assets/img/team/1.jpg
+  - Twitter: #
+  - Facebook: #
+  - LinkedIn: #
+
+- **Diana Petersen** - Lead Marketer
+  - Description: Skilled marketer with a passion for innovative strategies.
+  - Image: assets/img/team/2.jpg
+  - Twitter: #
+  - Facebook: #
+  - LinkedIn: #
+
+- **Larry Parker** - Lead Developer
+  - Description: Experienced developer with a focus on scalable applications.
+  - Image: assets/img/team/3.jpg
+  - Twitter: #
+  - Facebook: #
+  - LinkedIn: #
