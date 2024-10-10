@@ -1,25 +1,25 @@
 About Title: About
-About Subtitle: Lorem ipsum dolor sit amet consectetur.
+About Subtitle: US
 
 Timeline Entries:
-- Year: 2009-2011
+- Year: 2010-2017
   Title: Our Humble Beginnings
-  Content: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur.
+  Content: Spending hours and hours dedicating our time to our mission to bring the best for our clients and to always give our best.
   Image: assets/img/about/1.jpg
 
-- Year: March 2011
+- Year: March 2018
   Title: An Agency is Born
-  Content: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur.
+  Content: Our agency was born and having our own space to equally distribute our workforce and to provide the best work possible.
   Image: assets/img/about/2.jpg
 
-- Year: December 2015
+- Year: December 2020
   Title: Transition to Full Service
-  Content: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur.
+  Content: Our transition to full service was not easy but we made it work after all those hard hours spend in the beginning drawing designs and making a goals come true we were able to become full service.
   Image: assets/img/about/3.jpg
 
-- Year: July 2020
+- Year: July 2024
   Title: Phase Two Expansion
-  Content: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur.
+  Content: This phase is important to use because not only have we been dedicated to our mission but we want to expand our family and bring in some more amazing talent to help achieve and reach greater heights.
   Image: assets/img/about/4.jpg
 
 Call to Action:
