@@ -1,25 +1,48 @@
 <?php
 session_start();
-require 'config.php'; // Include database connection
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
+// Handle login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
+    $username = trim($_POST['username']);
     $password = $_POST['password'];
 
-    // Query the database for user
-    $stmt = $pdo->prepare('SELECT * FROM users WHERE username = ?');
-    $stmt->execute([$username]);
-    $user = $stmt->fetch();
+    // Check for admin credentials
+    if ($username === 'admin' && $password === 'admin') {
+        // Login successful for admin
+        $_SESSION['user_id'] = 'admin'; // Set admin user ID
+        $_SESSION['username'] = 'admin';
+        $_SESSION['role'] = 'admin';
+        header('Location: admin.php'); // Redirect to admin dashboard
+        exit;
+    }
 
-    // Verify password
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['role'] = $user['role'];
-        header('Location: admin.php'); // Redirect to admin page
+    // Load users from JSON
+    $usersFile = 'users.json';
+    if (!file_exists($usersFile)) {
+        die("Error: Users file not found.");
+    }
+
+    $users = json_decode(file_get_contents($usersFile), true);
+    $loginSuccessful = false;
+
+    foreach ($users as $user) {
+        if ($user['username'] === $username && password_verify($password, $user['password'])) {
+            // Login successful for a regular user
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['role'] = $user['role'];
+            $loginSuccessful = true;
+            break;
+        }
+    }
+
+    if ($loginSuccessful) {
+        header('Location: index.php'); // Redirect to home page for regular users
         exit;
     } else {
-        $error = 'Invalid username or password';
+        $error = "Invalid username or password.";
     }
 }
 ?>
@@ -29,28 +52,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Login</h2>
-        <?php if (isset($error)): ?>
-            <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
-        <?php endif; ?>
-        <form action="" method="post">
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+    <h1>Login</h1>
+    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
+    <form action="" method="post">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
         <br>
-        <a href="index.php" class="btn btn-secondary">Return to Home</a> <!-- Return to Home Button -->
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+    
+    <div class="mt-3">
+        <a href="signup.php">Don't have an account? Signup!</a>
     </div>
+
+    <a href="index.php" class="btn btn-secondary mt-3">Return to Home</a>
 </body>
 </html>
-
