@@ -5,3 +5,5 @@ session_destroy(); // Destroy the session
 header('Location: index.php'); // Redirect to the home page
 exit;
 ?>
+
+
