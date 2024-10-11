@@ -1,0 +1,11 @@
+Title: E-Commerce
+Description: Boost your business with our custom-built, scalable eCommerce platforms designed to drive sales and streamline your operations.
+Icon: fas fa-shopping-cart
+
+Title: Responsive Design
+Description: Deliver a seamless experience across all devices with our mobile-first, responsive web designs that engage users wherever they are.
+Icon: fas fa-laptop
+
+Title: Web Security
+Description: Protect your site and customer data with our advanced web security solutions, ensuring a safe, reliable online experience.
+Icon: fas fa-lock
