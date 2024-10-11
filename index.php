@@ -32,8 +32,14 @@
                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="signup.php">Sign Up</a></li><!---Added singup button here -->
-                <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li> <!-- Added Login button here -->
+                <?php if (isset($_SESSION['username'])): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout (<?= htmlspecialchars($_SESSION['username']) ?>)</a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="signup.php">Sign Up</a></li>
+                <?php endif; ?>
                 </ul>
             </div>
         </div>
