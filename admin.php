@@ -246,7 +246,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <button type="submit" name="create_item" class="btn btn-success">Create Item</button>
         </form>
-
+        <h2>Manage User Files</h2>
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Files</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($users as $user): ?>
+                        <?php if ($user['role'] === 'user'): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($user['username']); ?></td>
+                                <td>
+                                    <?php if (!empty($user['files'])): ?>
+                                        <ul>
+                                            <?php foreach ($user['files'] as $file): ?>
+                                                <li><a href="uploads/<?= htmlspecialchars($file); ?>" target="_blank"><?= htmlspecialchars($file); ?></a></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php else: ?>
+                                        No files uploaded.
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         <a href="logout.php" class="btn btn-danger mt-3">Logout</a>
         <a href="index.php" class="btn btn-secondary mt-3">Return to Home</a>
     </div>
