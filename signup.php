@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['username'] = $newUser['username'];
         $_SESSION['role'] = $newUser['role'];
 
-        // Redirect to a welcome page or home page
-        header('Location: index.php'); // Redirect to the home page
+        // Redirect to the user dashboard after signup
+        header('Location: user_dashboard.php'); // Redirect to user dashboard
         exit;
     }
 }
@@ -89,5 +89,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
