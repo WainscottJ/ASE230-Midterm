@@ -25,8 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $users = json_decode(file_get_contents($usersFile), true);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        die("Error: Invalid JSON data in users file.");
+    }
+
     $loginSuccessful = false;
 
+    // Check user credentials
     foreach ($users as $user) {
         if ($user['username'] === $username && password_verify($password, $user['password'])) {
             // Login successful for a regular user
@@ -39,7 +44,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($loginSuccessful) {
-        header('Location: index.php'); // Redirect to home page for regular users
+        // Redirect based on role
+        if ($_SESSION['role'] === 'admin') {
+            header('Location: admin.php'); // Redirect to admin dashboard
+        } else {
+            header('Location: user_dashboard.php'); // Redirect to user dashboard
+        }
         exit;
     } else {
         $error = "Invalid username or password.";
@@ -52,24 +62,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Corrected the CSS link -->
 </head>
 <body>
-    <h1>Login</h1>
-    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
-    <form action="" method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" required>
-        <br>
-        <button type="submit">Login</button>
-    </form>
-    
-    <div class="mt-3">
-        <a href="signup.php">Don't have an account? Signup!</a>
-    </div>
+    <div class="container">
+        <h1>Login</h1>
+        
+        <?php if (isset($error)): ?>
+            <p style="color:red;"><?= htmlspecialchars($error); ?></p>
+        <?php endif; ?>
 
-    <a href="index.php" class="btn btn-secondary mt-3">Return to Home</a>
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+        <div class="mt-3">
+            <a href="signup.php">Don't have an account? Signup!</a>
+        </div>
+        <a href="index.php" class="btn btn-secondary mt-3">Return to Home</a>
+    </div>
 </body>
 </html>
