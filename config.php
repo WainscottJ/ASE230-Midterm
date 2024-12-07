@@ -24,3 +24,4 @@ function is_admin($username) {
     return $username === 'admin';
 }
 ?>
+
