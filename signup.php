@@ -1,5 +1,8 @@
 <?php
 session_start();
+$pageTitle = "Sign Up";
+include 'header.php';
+
 $usersFile = 'users.json';
 
 // Check if the users file exists
@@ -51,41 +54,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style2.css">
-</head>
-<body>
-    <div class="container mt-4">
-        <h1>Sign Up</h1>
-        <?php if (isset($error)): ?>
-            <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
-        <?php endif; ?>
-        
-        <form action="" method="post">
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" name="username" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
-        </form>
-
-        <div class="mt-3">
-            <a href="login.php">Already have an account? Login</a>
+<div class="container mt-4">
+    <h1>Sign Up</h1>
+    <?php if (isset($error)): ?>
+        <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+    <?php endif; ?>
+    
+    <form action="signup.php" method="post">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="form-control" required>
         </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
 
-        <a href="index.php" class="btn btn-secondary mt-3">Return to Home</a>
-    </div>
+    <p class="mt-3"><a href="login.php">Already have an account? Log in!</a></p>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<?php include 'footer.php'; ?>
+
