@@ -3,6 +3,9 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+$pageTitle = "Login";
+include 'header.php';
+
 // Handle login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
@@ -48,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($_SESSION['role'] === 'admin') {
             header('Location: admin.php'); // Redirect to admin dashboard
         } else {
-            header('Location: user_dashboard.php'); // Redirect to user dashboard
+            header('Location: userdashboard.php'); // Redirect to user dashboard
         }
         exit;
     } else {
@@ -57,37 +60,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- Corrected the CSS link -->
-</head>
-<body>
-    <div class="container">
-        <h1>Login</h1>
-        
-        <?php if (isset($error)): ?>
-            <p style="color:red;"><?= htmlspecialchars($error); ?></p>
-        <?php endif; ?>
+<h1>Login</h1>
 
-        <form action="" method="post">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" name="username" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" name="password" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+<?php if (isset($error)): ?>
+    <p style="color:red;"><?= htmlspecialchars($error); ?></p>
+<?php endif; ?>
 
-        <div class="mt-3">
-            <a href="signup.php">Don't have an account? Signup!</a>
-        </div>
-        <a href="index.php" class="btn btn-secondary mt-3">Return to Home</a>
+<form action="login.php" method="post">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" name="username" class="form-control" required>
     </div>
-</body>
-</html>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" name="password" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+<p><a href="signup.php">Don't have an account? Sign up!</a></p>
+
+<?php include 'footer.php'; ?>
