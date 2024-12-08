@@ -32,9 +32,19 @@ if ($items === null) {
     die("Error: Invalid JSON data in items file.");
 }
 
-// Handle form submissions for user and item management
+// Load item requests from JSON
+$requestsFile = 'item_requests.json';
+if (!file_exists($requestsFile)) {
+    file_put_contents($requestsFile, json_encode([])); // Create the file if it doesn't exist
+}
+$requests = json_decode(file_get_contents($requestsFile), true);
+if ($requests === null) {
+    die("Error: Invalid JSON data in requests file.");
+}
+
+// Handle form submissions for user, item, and request management
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // User and item management logic from the functionality script
+    // User and item management logic
     if (isset($_POST['create_user'])) {
         $username = htmlspecialchars(trim($_POST['username']));
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -81,6 +91,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = intval($_POST['id']);
         $items = array_filter($items, fn($item) => $item['id'] != $id);
         file_put_contents($itemsFile, json_encode(array_values($items), JSON_PRETTY_PRINT));
+    }
+
+    // Handle user item request actions
+    if (isset($_POST['approve_request'])) {
+        $requestId = intval($_POST['request_id']);
+        foreach ($requests as &$request) {
+            if ($request['id'] === $requestId) {
+                $request['status'] = 'Approved';
+                break;
+            }
+        }
+        file_put_contents($requestsFile, json_encode($requests, JSON_PRETTY_PRINT));
+    }
+
+    if (isset($_POST['delete_request'])) {
+        $requestId = intval($_POST['request_id']);
+        $requests = array_filter($requests, fn($req) => $req['id'] != $requestId);
+        file_put_contents($requestsFile, json_encode(array_values($requests), JSON_PRETTY_PRINT));
     }
 }
 ?>
@@ -134,40 +162,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </form>
 
 <hr>
-<h3>Manage Items</h3>
+<h3>Manage User Item Requests</h3>
+<?php
+// Load item requests from JSON
+$requestsFile = 'item_requests.json';
+if (!file_exists($requestsFile)) {
+    file_put_contents($requestsFile, json_encode([])); // Create the file if it doesn't exist
+}
+$requests = json_decode(file_get_contents($requestsFile), true);
+if ($requests === null) {
+    die("Error: Invalid JSON data in requests file.");
+}
+?>
+
 <table class="table table-bordered">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>File</th>
+            <th>Username</th>
+            <th>Item Name</th>
+            <th>Details</th>
+            <th>Status</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($items as $item): ?>
+        <?php foreach ($requests as $request): ?>
             <tr>
-                <td><?= htmlspecialchars($item['id']) ?></td>
-                <td><?= htmlspecialchars($item['title']) ?></td>
-                <td><?= htmlspecialchars($item['description']) ?></td>
-                <td>
-                    <?php if (!empty($item['file'])): ?>
-                        <a href="uploads/<?= htmlspecialchars($item['file']) ?>" target="_blank">View File</a>
-                    <?php else: ?>
-                        No File
-                    <?php endif; ?>
-                </td>
+                <td><?= htmlspecialchars($request['id']) ?></td>
+                <td><?= htmlspecialchars($request['username']) ?></td>
+                <td><?= htmlspecialchars($request['item_name']) ?></td>
+                <td><?= htmlspecialchars($request['item_details']) ?></td>
+                <td><?= htmlspecialchars($request['status'] ?? 'Pending') ?></td>
                 <td>
                     <form action="" method="post" style="display:inline;">
-                        <input type="hidden" name="id" value="<?= $item['id'] ?>">
-                        <button type="submit" name="delete_item" class="btn btn-danger btn-sm">Delete</button>
+                        <input type="hidden" name="request_id" value="<?= $request['id'] ?>">
+                        <button type="submit" name="approve_request" class="btn btn-success btn-sm">Approve</button>
+                        <button type="submit" name="delete_request" class="btn btn-danger btn-sm">Delete</button>
                     </form>
                 </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+
 
 <h3>Create Item</h3>
 <form action="" method="post" enctype="multipart/form-data">

@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "username": "jacob",
+        "item_name": "Film parts",
+        "item_details": "Can we get an order of large lens and about 10 cameras",
+        "status": "Approved",
+        "request_date": "2024-12-07 19:33:06"
+    },
+    {
+        "id": 2,
+        "username": "jacob",
+        "item_name": "Film parts",
+        "item_details": "123456",
+        "status": "Approved",
+        "request_date": "2024-12-07 19:46:21"
+    }
+]
