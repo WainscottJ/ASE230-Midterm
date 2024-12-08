@@ -7,7 +7,7 @@
         <meta name="author" content="" />
         <title>Agency - Horizon Media</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="" href="" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -20,7 +20,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><img src="assets/img/Horizon_logo.jpg" alt="Horizon Media Logo" /></a>
+                <a class="navbar-brand" href="#page-top"><img src="assets/img/Horizon logo.jpg" alt="Horizon Media Logo" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -50,12 +50,7 @@
         <?php include 'lib/services.php'; ?>
 
         <!-- Picture Section -->
-        <section class="page-section" id="picture">
-            <div class="container text-center">
-                <h2 class="section-heading text-uppercase">Our Featured Picture</h2>
-                <img src="assets/img/featured.jpg" alt="Featured" class="img-fluid rounded shadow mt-4" style="max-width: 70%;">
-            </div>
-        </section>
+        
 
         <!-- Portfolio Grid-->
         <?php include 'lib/portfolio_items.php'; ?>
