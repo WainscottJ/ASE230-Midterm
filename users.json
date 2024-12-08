@@ -2,7 +2,13 @@
     {
         "id": 1,
         "username": "testuser",
-        "password": "$2b$12$D1gjriHLF.Rl.B8Qb/5cieWopQX5BbgHmzoRfDed5exffZYtJ3uqC",
+        "password": "$2b$12$D1gjriHLF.Rl.B8Qb\/5cieWopQX5BbgHmzoRfDed5exffZYtJ3uqC",
         "role": "User"
+    },
+    {
+        "id": 2,
+        "username": "jacob",
+        "password": "$2y$10$ujgF44wUQHw\/oE2s9PGvGeZLypn8c5Jz8Kq25\/0W.1Vmsz37sgwLO",
+        "role": "user"
     }
 ]
